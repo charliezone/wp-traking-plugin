@@ -32,3 +32,5 @@ register_activation_hook( __FILE__, 'traking_install' );
 require_once(dirname(__FILE__).'/backend/rest_api.php');
 require_once(dirname(__FILE__).'/backend/admin.php');
 
+require_once(dirname(__FILE__).'/frontend/traking_shortcode.php');
+
