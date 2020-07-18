@@ -34,3 +34,5 @@ require_once(dirname(__FILE__).'/backend/admin.php');
 
 require_once(dirname(__FILE__).'/frontend/traking_shortcode.php');
 
+require_once(dirname(__FILE__).'/cron.php');
+

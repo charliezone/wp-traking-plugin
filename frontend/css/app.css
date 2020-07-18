@@ -19,6 +19,12 @@
     margin: 0 auto;
 }
 
+@media screen and (max-width: 980px){
+    .traking-app .traking-form{
+        width: 100%;
+    }
+}
+
 .traking-app h2{
     text-align: center;
     margin-bottom: 15px;
@@ -35,6 +41,12 @@
 .traking-app .traking-codes-list{
     width: 30%;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 980px){
+    .traking-app .traking-codes-list{
+        width: 100%;
+    }
 }
 
 .traking-app .traking-codes-list span{
@@ -67,4 +79,10 @@
     display: block;
     width: 30%;
     margin-top: 15px;
+}
+
+@media screen and (max-width: 980px){
+    .traking-app .traking-codes-list button{
+        width: 50%;
+    }
 }
