@@ -25,11 +25,9 @@ class TrakingCodes{
                 $csvData = array_map("utf8_encode", $csvData);
 
                 $ci = trim($csvData[0]);
-                $cp = trim($csvData[1]);
+                $cp = trim($csvData[5]);
 
                 $data = array( 'cp' => $cp, 'ci' => $ci );
-
-                //wp_die(var_dump($data));
 
                 if( !empty($ci) && !empty($cp) ){
                     if( !$this->wpdb->replace($tablename, $data) ){

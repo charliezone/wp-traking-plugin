@@ -1,5 +1,70 @@
 .traking-app{
-    width: 100px;
-    height: 100px;
-    background-color: red;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.traking-app .hide{
+    display: none;
+}
+
+.traking-app .loading{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.traking-app .traking-form{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+}
+
+.traking-app h2{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.traking-app .traking-form .error-msg{
+    color: #ed1f23;
+}
+
+.traking-app .traking-form button{
+    margin-top: 15px;
+}
+
+.traking-app .traking-codes-list{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.traking-app .traking-codes-list span{
+    text-align: center;
+    display: block;
+    line-height: 1.5rem;
+}
+
+.traking-app .traking-codes-list .traking-code{
+    color: #707070;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.traking-app .traking-codes-list .traking-code:nth-of-type(even){
+    background-color: #efefef;
+}
+
+.traking-app .traking-codes-list .traking-code:nth-of-type(odd){
+    background-color: #e0e0e0;
+}
+
+.traking-app .traking-codes-list .traking-code a{
+    color: #2e3092;
+}
+
+.traking-app .traking-codes-list button{
+    margin-left: auto;
+    display: block;
+    width: 30%;
+    margin-top: 15px;
 }
