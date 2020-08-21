@@ -9,7 +9,8 @@ function traking_scripts(){
     wp_register_script( 'react-dom-js', 'https://unpkg.com/react-dom@16/umd/react-dom.development.js', array('react-js') );
     wp_register_script( 'traking-app-js', plugin_dir_url(__FILE__).'app.js', array('react-dom-js') );
 
-    $site_info = array('site_url' => get_site_url());
+    $nonce = wp_create_nonce( 'wp_rest_traking_nonce' );
+    $site_info = array('site_url' => get_site_url(), 'traking_nonce' => $nonce);
 
     wp_localize_script( 'traking-app-js', 'site_info', $site_info );
 }

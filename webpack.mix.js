@@ -17,7 +17,7 @@ let mix = require('laravel-mix');
 // Configure what it does
 mix
     // This is required for hot reloading
-    //.setPublicPath('./dist')
+    //.setPublicPath('./frontend')
     // Add eslint to .jsx, .js and .vue files
     .webpackConfig({
         module: {
