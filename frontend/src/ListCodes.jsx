@@ -11,6 +11,11 @@ function ListCodes(props) {
         document.body.removeChild(input_temp);
     }
 
+    function formatDate(d) {
+        const date = new Date(d);
+        return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    }
+
     return (
         <div className="traking-codes-list">
             <h2>Códigos de seguimiento</h2>
@@ -18,7 +23,7 @@ function ListCodes(props) {
                 props.codes && props.codes.map(v => {
                     return (
                         <div className="traking-code" key={v.cp}>
-                            {v.cp} <a href="#" onClick={handleCopy} code={v.cp}>copiar</a>
+                            <small>{formatDate(v.create_at)}</small><strong>{v.cp}</strong> <a href="#" onClick={handleCopy} code={v.cp}>copiar</a>
                         </div>
                     )
                 })

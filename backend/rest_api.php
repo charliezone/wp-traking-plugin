@@ -20,7 +20,7 @@ function getCodesByCi(WP_REST_Request $request){
 
     $codes = $wpdb->get_results( 
         "
-            SELECT cp 
+            SELECT cp, create_at 
             FROM $tablename
             WHERE ci = $ci
         "
