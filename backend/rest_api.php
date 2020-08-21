@@ -16,7 +16,7 @@ function getCodesByCi(WP_REST_Request $request){
     $tablename = $wpdb->prefix."traking_codes";
 
     $parameters = $request->get_json_params();
-    $ci = $parameters['ci'];
+    $ci = sanitize_text_field($parameters['ci']);
 
     $codes = $wpdb->get_results( 
         "
