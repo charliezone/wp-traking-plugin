@@ -15,13 +15,15 @@ function App() {
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
 
-        const raw = JSON.stringify({ "ci": ci });
+        const raw = JSON.stringify({
+            "ci": ci,
+            'nonce': site_info.traking_nonce
+        });
 
         var requestOptions = {
             method: 'POST',
             headers: headers,
-            body: raw,
-            redirect: 'follow'
+            body: raw
         };
 
         fetch(`${site_info.site_url}/wp-json/traking/v1/get-codes`, requestOptions)

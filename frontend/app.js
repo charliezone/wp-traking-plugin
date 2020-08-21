@@ -106,13 +106,18 @@ function ListCodes(props) {
     document.body.removeChild(input_temp);
   }
 
+  function formatDate(d) {
+    var date = new Date(d);
+    return "".concat(date.getDate(), "/").concat(date.getMonth(), "/").concat(date.getFullYear());
+  }
+
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"
   }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), props.codes && props.codes.map(function (v) {
     return /*#__PURE__*/React.createElement("div", {
       className: "traking-code",
       key: v.cp
-    }, v.cp, " ", /*#__PURE__*/React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("small", null, formatDate(v.create_at)), /*#__PURE__*/React.createElement("strong", null, v.cp), " ", /*#__PURE__*/React.createElement("a", {
       href: "#",
       onClick: handleCopy,
       code: v.cp
@@ -223,13 +228,13 @@ function App() {
     headers.append("Accept", "application/json");
     headers.append("Content-Type", "application/json");
     var raw = JSON.stringify({
-      "ci": ci
+      "ci": ci,
+      'nonce': site_info.traking_nonce
     });
     var requestOptions = {
       method: 'POST',
       headers: headers,
-      body: raw,
-      redirect: 'follow'
+      body: raw
     };
     fetch("".concat(site_info.site_url, "/wp-json/traking/v1/get-codes"), requestOptions).then(function (response) {
       return response.json();
