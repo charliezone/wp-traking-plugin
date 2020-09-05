@@ -106,18 +106,13 @@ function ListCodes(props) {
     document.body.removeChild(input_temp);
   }
 
-  function formatDate(d) {
-    var date = new Date(d);
-    return "".concat(date.getDate(), "/").concat(date.getMonth(), "/").concat(date.getFullYear());
-  }
-
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"
   }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), props.codes && props.codes.map(function (v) {
     return /*#__PURE__*/React.createElement("div", {
       className: "traking-code",
       key: v.cp
-    }, /*#__PURE__*/React.createElement("small", null, formatDate(v.create_at)), /*#__PURE__*/React.createElement("strong", null, v.cp), " ", /*#__PURE__*/React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("strong", null, v.cp), " ", /*#__PURE__*/React.createElement("a", {
       href: "#",
       onClick: handleCopy,
       code: v.cp
