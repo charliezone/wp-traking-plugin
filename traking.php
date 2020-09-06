@@ -9,30 +9,48 @@
  * License: GPL2
  */
 
-function traking_install() {
-	global $wpdb;
+add_action("wp_enqueue_scripts", "traking_scripts");
 
-	$table_name = $wpdb->prefix . 'traking_codes';
-	
-	$charset_collate = $wpdb->get_charset_collate();
+function traking_scripts(){
+    wp_register_style( 'traking-app-style', plugin_dir_url(__FILE__).'css/app.css' );
 
-	$sql = "CREATE TABLE $table_name (
-        cp varchar(15) NOT NULL,
-        ci varchar(15) NOT NULL,
-		create_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		PRIMARY KEY  (cp)
-	) $charset_collate;";
+    wp_register_script( 'react-js', 'https://unpkg.com/react@16/umd/react.production.min.js' );
+    wp_register_script( 'react-dom-js', 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js', array('react-js') );
+    wp_register_script( 'traking-app-js', plugin_dir_url(__FILE__).'app.js', array('react-dom-js'), '1.1.3' );
 
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
+    $nonce = wp_create_nonce( 'wp_rest_traking_nonce' );
+    $site_info = array('site_url' => get_site_url(), 'traking_nonce' => $nonce);
+
+    wp_localize_script( 'traking-app-js', 'site_info', $site_info );
 }
 
-register_activation_hook( __FILE__, 'traking_install' );
+function traking_codes(){
+    wp_enqueue_script('react-js');
+    wp_enqueue_script('react-dom-js');
+    wp_enqueue_script('traking-app-js');
 
-require_once(dirname(__FILE__).'/backend/rest_api.php');
-require_once(dirname(__FILE__).'/backend/admin.php');
+    wp_enqueue_style('traking-app-style');
 
-require_once(dirname(__FILE__).'/frontend/traking_shortcode.php');
+    return '<div id="traking-app"></div>';
+}
 
-require_once(dirname(__FILE__).'/cron.php');
+add_shortcode( 'traking_codes', 'traking_codes' );
+
+function traking_codes_modify_script_tags( $html, $handle ) {
+
+    /** Add script attribute **/
+    if( 'react-js' === $handle || 'react-dom-js' ===  $handle) {
+
+        /* Add `crossorigin` attribute */
+        $html = str_replace(
+            '<script',
+            '<script crossorigin',
+            $html
+        );
+    }
+
+    return $html;
+
+}
+add_filter( 'script_loader_tag', 'traking_codes_modify_script_tags', 10, 2 );
 
