@@ -35,7 +35,7 @@ mix
     //.copy('src/static', 'dist')
     // This will process our entry point (app.js)
     // into the dist/js folder
-    .react('frontend/src/app.js', 'frontend');
+    .react('src/app.js', 'app.js');
 
 // Full API
 // mix.js(src, output);

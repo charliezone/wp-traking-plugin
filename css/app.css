@@ -55,12 +55,28 @@
     line-height: 1.5rem;
 }
 
+.traking-app .traking-codes-list .table{
+    width: 100%;
+}
+
+.traking-app .traking-codes-list .table thead{
+    padding: 10px 0;
+    background-color: #000;
+    color: #fff;
+}
+
 .traking-app .traking-codes-list .traking-code{
     color: #707070;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     padding: 10px 0;
+}
+
+.traking-app .traking-codes-list .traking-code td,
+.traking-app .traking-codes-list th{
+    padding: 0 10px 0;
+}
+
+.traking-app .traking-codes-list .traking-code td:nth-last-of-type(1){
+    text-align: center;
 }
 
 .traking-app .traking-codes-list .traking-code:nth-of-type(even){
@@ -85,5 +101,11 @@
 @media screen and (max-width: 980px){
     .traking-app .traking-codes-list button{
         width: 50%;
+    }
+
+    .traking-app .traking-codes-list .traking-code td:nth-last-of-type(1),
+    .traking-app .traking-codes-list .traking-code td:nth-of-type(1){
+        font-size: 12.8px;
+        text-align: center;
     }
 }

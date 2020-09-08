@@ -11,37 +11,25 @@ function App() {
 
     function getCodes(ci) {
         setLoading(true);
-        const headers = new Headers();
-        headers.append("Accept", "application/json");
-        headers.append("Content-Type", "application/json");
 
-        const raw = JSON.stringify({
-            "ci": ci,
-            'nonce': site_info.traking_nonce
-        });
-
-        var requestOptions = {
-            method: 'POST',
-            headers: headers,
-            body: raw
-        };
-
-        fetch(`${site_info.site_url}/wp-json/traking/v1/get-codes`, requestOptions)
+        fetch(`https://www.solvebigtech.com/bordoy/service/index.php?funcname=status&enterprise=bordoy&identity=${ci}&apikey=bcURfJhHPCNBT4i7ANhVKQDw62e32W`)
             .then(response => response.json())
             .then(result => {
-                const data = JSON.parse(result);
                 setLoading(false);
-                setCodes(data.data);
+                setCodes(result[ci]);
                 setRoute('ListCodes');
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                setLoading(false);
+                setRoute('Error');
+            });
     }
 
     return (
         <div className="traking-app">
             <div className={(loading) ? 'loading' : 'hide'}><span>Cargando ...</span></div>
             <div className={(!loading) ? 'wraper' : 'hide'}>
-                {(route === 'TrakingForm') ? <TrakingForm getCodes={getCodes} /> : <ListCodes goBack={setRoute} codes={codes} />}
+                {(route === 'TrakingForm') ? <TrakingForm getCodes={getCodes} /> : (route !== 'Error') ? <ListCodes goBack={setRoute} codes={codes} /> : <span className="error-msg">Error de conexión</span>}
             </div>
         </div>
     )

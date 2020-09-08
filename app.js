@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./frontend/src/ListCodes.jsx":
-/*!************************************!*\
-  !*** ./frontend/src/ListCodes.jsx ***!
-  \************************************/
+/***/ "./src/ListCodes.jsx":
+/*!***************************!*\
+  !*** ./src/ListCodes.jsx ***!
+  \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -98,26 +98,26 @@ __webpack_require__.r(__webpack_exports__);
 function ListCodes(props) {
   function handleCopy(e) {
     e.preventDefault();
-    var input_temp = document.createElement("input");
-    input_temp.value = e.target.getAttribute('code');
-    document.body.appendChild(input_temp);
-    input_temp.select();
+    var inputTemp = document.createElement("input");
+    inputTemp.value = e.target.getAttribute('code');
+    document.body.appendChild(inputTemp);
+    inputTemp.select();
     document.execCommand("copy");
-    document.body.removeChild(input_temp);
+    document.body.removeChild(inputTemp);
   }
 
+  var template = /*#__PURE__*/React.createElement("table", {
+    className: "table"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Estado"), /*#__PURE__*/React.createElement("th", null, "C\xF3digo"), /*#__PURE__*/React.createElement("th", null, "Documento"))), /*#__PURE__*/React.createElement("tbody", null, Object.keys(props.codes).map(function (v) {
+    if (v === 'length') return;
+    return /*#__PURE__*/React.createElement("tr", {
+      className: "traking-code",
+      key: props.codes[v].hbl
+    }, /*#__PURE__*/React.createElement("td", null, props.codes[v].status), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, props.codes[v].hbl)), /*#__PURE__*/React.createElement("td", null, props.codes[v].mailguide.length < 7 ? '-' : props.codes[v].mailguide));
+  })));
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"
-  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), props.codes && props.codes.map(function (v) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "traking-code",
-      key: v.cp
-    }, /*#__PURE__*/React.createElement("strong", null, v.cp), " ", /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      onClick: handleCopy,
-      code: v.cp
-    }, "copiar"));
-  }), !props.codes && /*#__PURE__*/React.createElement("span", null, "No se encontraron c\xF3digos para la informaci\xF3n proporcionada."), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), props.codes.length !== 0 && template, !props.codes.length && /*#__PURE__*/React.createElement("span", null, "No se encontraron c\xF3digos para la informaci\xF3n proporcionada."), /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
       return props.goBack('TrakingForm');
     }
@@ -128,10 +128,10 @@ function ListCodes(props) {
 
 /***/ }),
 
-/***/ "./frontend/src/TrakingForm.jsx":
-/*!**************************************!*\
-  !*** ./frontend/src/TrakingForm.jsx ***!
-  \**************************************/
+/***/ "./src/TrakingForm.jsx":
+/*!*****************************!*\
+  !*** ./src/TrakingForm.jsx ***!
+  \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -171,17 +171,17 @@ function TrakingForm(props) {
 
 /***/ }),
 
-/***/ "./frontend/src/app.js":
-/*!*****************************!*\
-  !*** ./frontend/src/app.js ***!
-  \*****************************/
+/***/ "./src/app.js":
+/*!********************!*\
+  !*** ./src/app.js ***!
+  \********************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TrakingForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TrakingForm */ "./frontend/src/TrakingForm.jsx");
-/* harmony import */ var _ListCodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListCodes */ "./frontend/src/ListCodes.jsx");
+/* harmony import */ var _TrakingForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TrakingForm */ "./src/TrakingForm.jsx");
+/* harmony import */ var _ListCodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListCodes */ "./src/ListCodes.jsx");
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -219,27 +219,15 @@ function App() {
 
   function getCodes(ci) {
     setLoading(true);
-    var headers = new Headers();
-    headers.append("Accept", "application/json");
-    headers.append("Content-Type", "application/json");
-    var raw = JSON.stringify({
-      "ci": ci,
-      'nonce': site_info.traking_nonce
-    });
-    var requestOptions = {
-      method: 'POST',
-      headers: headers,
-      body: raw
-    };
-    fetch("".concat(site_info.site_url, "/wp-json/traking/v1/get-codes"), requestOptions).then(function (response) {
+    fetch("https://www.solvebigtech.com/bordoy/service/index.php?funcname=status&enterprise=bordoy&identity=".concat(ci, "&apikey=bcURfJhHPCNBT4i7ANhVKQDw62e32W")).then(function (response) {
       return response.json();
     }).then(function (result) {
-      var data = JSON.parse(result);
       setLoading(false);
-      setCodes(data.data);
+      setCodes(result[ci]);
       setRoute('ListCodes');
     })["catch"](function (error) {
-      return console.log('error', error);
+      setLoading(false);
+      setRoute('Error');
     });
   }
 
@@ -251,10 +239,12 @@ function App() {
     className: !loading ? 'wraper' : 'hide'
   }, route === 'TrakingForm' ? /*#__PURE__*/React.createElement(_TrakingForm__WEBPACK_IMPORTED_MODULE_0__["default"], {
     getCodes: getCodes
-  }) : /*#__PURE__*/React.createElement(_ListCodes__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }) : route !== 'Error' ? /*#__PURE__*/React.createElement(_ListCodes__WEBPACK_IMPORTED_MODULE_1__["default"], {
     goBack: setRoute,
     codes: codes
-  })));
+  }) : /*#__PURE__*/React.createElement("span", {
+    className: "error-msg"
+  }, "Error de conexi\xF3n")));
 }
 
 var domContainer = document.querySelector('#traking-app');
@@ -263,13 +253,13 @@ ReactDOM.render( /*#__PURE__*/React.createElement(App, null), domContainer);
 /***/ }),
 
 /***/ 0:
-/*!***********************************!*\
-  !*** multi ./frontend/src/app.js ***!
-  \***********************************/
+/*!**************************!*\
+  !*** multi ./src/app.js ***!
+  \**************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\grupobordoy\wp-content\plugins\traking\frontend\src\app.js */"./frontend/src/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\grupobordoy\wp-content\plugins\traking\src\app.js */"./src/app.js");
 
 
 /***/ })
