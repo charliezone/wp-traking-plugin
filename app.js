@@ -108,12 +108,21 @@ function ListCodes(props) {
 
   var template = /*#__PURE__*/React.createElement("table", {
     className: "table"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Estado"), /*#__PURE__*/React.createElement("th", null, "C\xF3digo"), /*#__PURE__*/React.createElement("th", null, "Documento"))), /*#__PURE__*/React.createElement("tbody", null, Object.keys(props.codes).map(function (v) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Estado"), /*#__PURE__*/React.createElement("th", null, "C\xF3digo"), /*#__PURE__*/React.createElement("th", null, "Documento"), /*#__PURE__*/React.createElement("th", null, "Acci\xF3n"))), /*#__PURE__*/React.createElement("tbody", null, Object.keys(props.codes).map(function (v) {
     if (v === 'length') return;
     return /*#__PURE__*/React.createElement("tr", {
       className: "traking-code",
       key: props.codes[v].hbl
-    }, /*#__PURE__*/React.createElement("td", null, props.codes[v].status), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, props.codes[v].hbl)), /*#__PURE__*/React.createElement("td", null, props.codes[v].mailguide.trim().match(/^[\d]{3}-/) || props.codes[v].mailguide.trim().startsWith('BL-') ? props.codes[v].mailguide : '-'));
+    }, /*#__PURE__*/React.createElement("td", null, props.codes[v].status), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, props.codes[v].hbl), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("a", {
+      href: "#",
+      className: "copyMovil",
+      onClick: handleCopy,
+      code: props.codes[v].hbl
+    }, "copiar")), /*#__PURE__*/React.createElement("td", null, props.codes[v].mailguide.trim().match(/^[\d]{3}-/) || props.codes[v].mailguide.trim().startsWith('BL-') ? props.codes[v].mailguide : '-'), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+      href: "#",
+      onClick: handleCopy,
+      code: props.codes[v].hbl
+    }, "copiar")));
   })));
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"

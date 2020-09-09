@@ -28,6 +28,8 @@
 .traking-app h2{
     text-align: center;
     margin-bottom: 15px;
+    color: #fbc51d;
+    text-transform: uppercase;
 }
 
 .traking-app .traking-form .error-msg{
@@ -60,9 +62,14 @@
 }
 
 .traking-app .traking-codes-list .table thead{
-    padding: 10px 0;
     background-color: #000;
-    color: #fff;
+    color: #fbc51d;
+}
+
+.traking-app .traking-codes-list .table thead th{
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
 }
 
 .traking-app .traking-codes-list .traking-code{
@@ -70,21 +77,20 @@
     padding: 10px 0;
 }
 
-.traking-app .traking-codes-list .traking-code td,
-.traking-app .traking-codes-list th{
+.traking-app .traking-codes-list .traking-code td{
     padding: 0 10px 0;
-}
-
-.traking-app .traking-codes-list .traking-code:nth-of-type(even){
-    background-color: #efefef;
-}
-
-.traking-app .traking-codes-list .traking-code:nth-of-type(odd){
-    background-color: #e0e0e0;
+    background-color: #b2b2b2;
+    border: 1px solid #dadada;
+    color: #fff;
+    text-align: center;
 }
 
 .traking-app .traking-codes-list .traking-code a{
     color: #2e3092;
+}
+
+.traking-app .traking-codes-list .traking-code a.copyMovil{
+    display: none;
 }
 
 .traking-app .traking-codes-list button{
@@ -99,9 +105,22 @@
         width: 50%;
     }
 
-    .traking-app .traking-codes-list .traking-code td:nth-last-of-type(1),
-    .traking-app .traking-codes-list .traking-code td:nth-of-type(1){
-        font-size: 12.8px;
-        text-align: center;
+    .traking-app .traking-codes-list .traking-code td,
+    .traking-app .traking-codes-list .table thead th{
+        font-size: 12.5px;
+    }
+
+    .traking-app .traking-codes-list .traking-code td:nth-of-type(1),
+    .traking-app .traking-codes-list .traking-code td:nth-last-of-type(2){
+        vertical-align: middle;
+    }
+
+    .traking-app .traking-codes-list .table th:nth-last-of-type(1),
+    .traking-app .traking-codes-list .traking-code td:nth-last-of-type(1){
+        display: none;
+    }
+
+    .traking-app .traking-codes-list .traking-code a.copyMovil{
+        display: block;
     }
 }

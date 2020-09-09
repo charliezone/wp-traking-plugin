@@ -12,11 +12,11 @@
 add_action("wp_enqueue_scripts", "traking_scripts");
 
 function traking_scripts(){
-    wp_register_style( 'traking-app-style', plugin_dir_url(__FILE__).'css/app.css', '1.2.0' );
+    wp_register_style( 'traking-app-style', plugin_dir_url(__FILE__).'css/app.css', '1.2.1' );
 
     wp_register_script( 'react-js', 'https://unpkg.com/react@16/umd/react.production.min.js' );
     wp_register_script( 'react-dom-js', 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js', array('react-js') );
-    wp_register_script( 'traking-app-js', plugin_dir_url(__FILE__).'app.js', array('react-dom-js'), '1.2.0' );
+    wp_register_script( 'traking-app-js', plugin_dir_url(__FILE__).'app.js', array('react-dom-js'), '1.2.1' );
 
     $nonce = wp_create_nonce( 'wp_rest_traking_nonce' );
     $site_info = array('site_url' => get_site_url(), 'traking_nonce' => $nonce);

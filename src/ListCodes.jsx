@@ -18,6 +18,7 @@ function ListCodes(props) {
                     <th>Estado</th>
                     <th>Código</th>
                     <th>Documento</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +28,12 @@ function ListCodes(props) {
                         return (
                             <tr className="traking-code" key={props.codes[v].hbl}>
                                 <td>{props.codes[v].status}</td>
-                                <td><strong>{props.codes[v].hbl}</strong></td>
+                                <td>
+                                    <strong>{props.codes[v].hbl}</strong><br />
+                                    <a href="#" className="copyMovil" onClick={handleCopy} code={props.codes[v].hbl}>copiar</a>
+                                </td>
                                 <td>{props.codes[v].mailguide.trim().match(/^[\d]{3}-/) || props.codes[v].mailguide.trim().startsWith('BL-') ? props.codes[v].mailguide : '-'}</td>
+                                <td><a href="#" onClick={handleCopy} code={props.codes[v].hbl}>copiar</a></td>
                             </tr>
                         )
                     })
