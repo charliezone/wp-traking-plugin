@@ -113,7 +113,7 @@ function ListCodes(props) {
     return /*#__PURE__*/React.createElement("tr", {
       className: "traking-code",
       key: props.codes[v].hbl
-    }, /*#__PURE__*/React.createElement("td", null, props.codes[v].status), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, props.codes[v].hbl)), /*#__PURE__*/React.createElement("td", null, props.codes[v].mailguide.length < 7 ? '-' : props.codes[v].mailguide));
+    }, /*#__PURE__*/React.createElement("td", null, props.codes[v].status), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, props.codes[v].hbl)), /*#__PURE__*/React.createElement("td", null, props.codes[v].mailguide.trim().match(/^[\d]{3}-/) || props.codes[v].mailguide.trim().startsWith('BL-') ? props.codes[v].mailguide : '-'));
   })));
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"

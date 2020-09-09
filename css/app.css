@@ -39,7 +39,7 @@
 }
 
 .traking-app .traking-codes-list{
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -73,10 +73,6 @@
 .traking-app .traking-codes-list .traking-code td,
 .traking-app .traking-codes-list th{
     padding: 0 10px 0;
-}
-
-.traking-app .traking-codes-list .traking-code td:nth-last-of-type(1){
-    text-align: center;
 }
 
 .traking-app .traking-codes-list .traking-code:nth-of-type(even){
