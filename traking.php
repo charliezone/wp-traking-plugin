@@ -12,7 +12,7 @@
 add_action("wp_enqueue_scripts", "traking_scripts");
 
 function traking_scripts(){
-    wp_register_style( 'traking-app-style', plugin_dir_url(__FILE__).'css/app.css', '1.2.1' );
+    wp_register_style( 'traking-app-style', plugin_dir_url(__FILE__).'css/app-style.css', '1.2.5' );
 
     wp_register_script( 'react-js', 'https://unpkg.com/react@16/umd/react.production.min.js' );
     wp_register_script( 'react-dom-js', 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js', array('react-js') );

@@ -105,6 +105,14 @@
         width: 50%;
     }
 
+    .traking-app .traking-codes-list .table{
+        display: block;
+        overflow: hidden;
+        overflow-x: auto;
+        clear: both;
+        width: 100%;
+    }
+
     .traking-app .traking-codes-list .traking-code td,
     .traking-app .traking-codes-list .table thead th{
         font-size: 12.5px;
