@@ -15,7 +15,7 @@
 .traking-app .traking-form{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -35,11 +35,12 @@
 }
 
 .traking-app .traking-form button{
-    margin-top: 15px;
+    width: 40%;
+    margin: 15px auto;
 }
 
 .traking-app .traking-codes-list{
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -49,18 +50,24 @@
     }
 }
 
-.traking-app .traking-codes-list span{
+.traking-app .traking-codes-list small{
+    display: inherit;
     text-align: center;
+    margin-bottom: 10px;
+}
+
+.traking-app .traking-codes-list span{
     display: block;
+    text-align: center;
     line-height: 1.5rem;
 }
 
 .traking-app .traking-codes-list .traking-code{
-    color: #707070;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    color: #707070;
     padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .traking-app .traking-codes-list .traking-code:nth-of-type(even){
@@ -71,19 +78,98 @@
     background-color: #e0e0e0;
 }
 
-.traking-app .traking-codes-list .traking-code a{
-    color: #2e3092;
+.traking-app .traking-codes-list .traking-code .actions-btn{
+    display: flex;
+}
+
+.traking-app .traking-codes-list .traking-code button{
+    margin: 0;
+    margin-right: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    width: fit-content;
 }
 
 .traking-app .traking-codes-list button{
-    margin-left: auto;
-    display: block;
     width: 30%;
+    display: block;
     margin-top: 15px;
+    margin-left: auto;
+    padding: 5px 10px;
 }
 
 @media screen and (max-width: 980px){
     .traking-app .traking-codes-list button{
         width: 50%;
     }
+}
+
+.traking-app .track-code{
+    top: 20vh;
+    opacity: 1;
+    width: 500px;
+    display: flex;
+    padding: 25px;
+    position: fixed;
+    border-radius: 5px;
+    overflow-y: scroll;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #000;
+    left: calc(50% - 250px);
+    justify-content: center;
+    transition: all 0.5s ease-in;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .15);
+}
+
+.traking-app .track-code.hide{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.traking-app .track-code .close{
+    top: 0;
+    right: 0;
+    border: 0;
+    color: #000;
+    margin-top: 0;
+    position: absolute;
+    width: fit-content;
+}
+
+.traking-app .track-code .loading{
+    margin-top: 0;
+}
+
+.traking-app .track-code .close:hover,
+.traking-app .track-code .close:focus{
+    outline: none;
+    color: inherit;
+    background-color: transparent;
+}
+
+.traking-app .track-code .track-wraper .contry-from,
+.traking-app .track-code .track-wraper .pack-status,
+.traking-app .track-code .track-wraper .time-item,
+.traking-app .track-code .track-wraper .time-item .location .from,
+.traking-app .track-code .track-wraper .time-item .location .to{
+    display: flex;
+}
+
+.traking-app .track-code .track-wraper{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.traking-app .track-code .track-wraper .time-item{
+    padding: 15px 10px;
+    justify-content: space-between;
+}
+
+.traking-app .track-code .track-wraper .time-item:nth-of-type(odd) {
+    background-color: #e0e0e0;
+}
+
+.traking-app .track-code .track-wraper .time-item:nth-of-type(even) {
+    background-color: #efefef;
 }

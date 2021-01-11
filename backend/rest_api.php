@@ -5,6 +5,12 @@ add_action( 'rest_api_init', function () {
     'callback' => 'getCodesByCi',
     'permission_callback' => 'nonceCheck'
   ) );
+
+  register_rest_route( 'traking/v1', '/track-codes', array(
+    'methods' => 'POST',
+    'callback' => 'trackByCodeAndYear',
+    'permission_callback' => 'nonceCheck'  
+  ) );
 } );
 
 function nonceCheck(WP_REST_Request $request){
@@ -24,6 +30,7 @@ function getCodesByCi(WP_REST_Request $request){
             SELECT cp, create_at 
             FROM $tablename
             WHERE ci = $ci
+            ORDER BY create_at DESC
         "
     );
 
@@ -32,4 +39,17 @@ function getCodesByCi(WP_REST_Request $request){
     }else{
         return json_encode( array("susses" => "false", "message" => "No se encontraron registros") );
     }
+}
+
+function trackByCodeAndYear(WP_REST_Request $request){
+    $parameters = $request->get_json_params();
+
+    $response = wp_remote_get( 'http://www.correos.cu/wp-json/correos-api/envios/'. $parameters['cp'] .'/'. 2021 .'/web/' );
+        
+    if($response->errors){
+        return json_encode( array("susses" => "false", "message" => 'error') );
+    }else{
+        return json_encode(array("susses" => "true", "data" => $response ));
+    }
+    
 }
