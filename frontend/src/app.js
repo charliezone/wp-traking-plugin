@@ -34,7 +34,11 @@ function App() {
                 setCodes(data.data);
                 setRoute('ListCodes');
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                setLoading(false);
+                alert('Estamos presentando problemas con la verificación de la petición, refresque la pagina y si el problema persiste contacte con el administrador.');
+                console.log('error', error);
+            });
     }
 
     return (
