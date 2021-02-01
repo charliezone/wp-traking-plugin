@@ -95,38 +95,13 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TrackCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TrackCode */ "./frontend/src/TrackCode.jsx");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 var _React = React,
-    useState = _React.useState;
+    useEffect = _React.useEffect;
 
 function ListCodes(props) {
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      trackCodeVisible = _useState2[0],
-      setTrackCodeVisible = _useState2[1];
-
-  var _useState3 = useState(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      reviewCp = _useState4[0],
-      setReviewCp = _useState4[1];
-
-  var _useState5 = useState(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      reviewYear = _useState6[0],
-      setReviewYear = _useState6[1];
+  useEffect(function () {
+    new Accordion('.accordion-container');
+  });
 
   function handleCopy(e) {
     e.preventDefault();
@@ -138,21 +113,27 @@ function ListCodes(props) {
     document.body.removeChild(input_temp);
   }
 
-  function handleReview(e, cp, createAt) {
-    e.preventDefault();
-    var date = new Date(createAt);
-    setTrackCodeVisible(true);
-    setReviewCp(cp);
-    setReviewYear(date.getFullYear());
-  }
-
-  function closeReview() {
-    setTrackCodeVisible(false);
-  }
-
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"
-  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), /*#__PURE__*/React.createElement("small", null, "Los c\xF3digos aparecen ordenados por fecha, los m\xE1s recientes arriba."), props.codes && props.codes.map(function (v) {
+  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), /*#__PURE__*/React.createElement("div", {
+    className: "accordion-container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ac"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "ac-header"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "ac-trigger"
+  }, "Consejos a tener en cuenta")), /*#__PURE__*/React.createElement("div", {
+    className: "ac-panel"
+  }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Los c\xF3digos aparecen ordenados por fecha, los m\xE1s recientes arriba."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "El enlace \"revisar\" lleva a la web de revisi\xF3n del proveedor de servicios en el pa\xEDs de entrega."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Se recomienda que pulse en el bot\xF3n copiar primeramente, para que pueda pegar el c\xF3digo en la p\xE1gina que se abrir\xE1."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Tenga en cuenta que a veces la pagina externa del proveedor falla, recuerde que ese es un servicio ajeno al nuestro por lo que deber\xE1 esperar a que este disponible."))))), props.codes && props.codes.map(function (v) {
     return /*#__PURE__*/React.createElement("div", {
       className: "traking-code",
       key: v.cp
@@ -162,138 +143,20 @@ function ListCodes(props) {
       href: "#",
       onClick: handleCopy,
       code: v.cp
-    }, "copiar"), /*#__PURE__*/React.createElement("button", {
-      href: "#",
-      onClick: function onClick(e) {
-        return handleReview(e, v.cp, v.create_at);
-      }
-    }, "Revisar")));
+    }, "copiar"), /*#__PURE__*/React.createElement("a", {
+      className: "review-btn",
+      href: "http://www.correos.cu/rastreador-de-envios/",
+      target: "_blank"
+    }, "revisar")));
   }), !props.codes && /*#__PURE__*/React.createElement("span", null, "No se encontraron c\xF3digos para la informaci\xF3n proporcionada."), /*#__PURE__*/React.createElement("button", {
+    className: "back-btn",
     onClick: function onClick() {
       return props.goBack('TrakingForm');
     }
-  }, "Atras"), /*#__PURE__*/React.createElement(_TrackCode__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    visible: trackCodeVisible,
-    cp: reviewCp,
-    year: reviewYear,
-    close: closeReview
-  }));
+  }, "Atras"));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (ListCodes);
-
-/***/ }),
-
-/***/ "./frontend/src/TrackCode.jsx":
-/*!************************************!*\
-  !*** ./frontend/src/TrackCode.jsx ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var _React = React,
-    useState = _React.useState,
-    useEffect = _React.useEffect;
-
-function TrackCode(props) {
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      loading = _useState2[0],
-      setLoading = _useState2[1];
-
-  var _useState3 = useState(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      success = _useState4[0],
-      setSuccess = _useState4[1];
-
-  var _useState5 = useState(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      trakingData = _useState6[0],
-      setTrakingData = _useState6[1];
-
-  function fetchRemote(cp, year) {
-    var headers = new Headers();
-    headers.append("Accept", "application/json");
-    headers.append("Content-Type", "application/json");
-    var raw = JSON.stringify({
-      "cp": cp,
-      "year": year,
-      'nonce': site_info.traking_nonce
-    });
-    var requestOptions = {
-      method: 'POST',
-      headers: headers,
-      body: raw
-    };
-    fetch("".concat(site_info.site_url, "/wp-json/traking/v1/track-codes"), requestOptions).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      var data = JSON.parse(result);
-      setLoading(false);
-      setTrakingData(JSON.parse(data.data.body));
-      setSuccess(data.susses);
-    })["catch"](function (error) {
-      return console.log('error', error);
-    });
-  }
-
-  useEffect(function () {
-    if (props.cp) {
-      setLoading(true);
-      fetchRemote(props.cp, props.year);
-    }
-  }, [props.cp]);
-  return /*#__PURE__*/React.createElement("div", {
-    className: "track-code ".concat(!props.visible && 'hide')
-  }, /*#__PURE__*/React.createElement("div", {
-    className: loading ? 'loading' : 'hide'
-  }, /*#__PURE__*/React.createElement("span", null, "Cargando ...")), /*#__PURE__*/React.createElement("button", {
-    className: "close",
-    onClick: function onClick() {
-      return props.close();
-    }
-  }, "Cerrar"), /*#__PURE__*/React.createElement("div", {
-    className: "track-wraper"
-  }, success && /*#__PURE__*/React.createElement("div", {
-    className: "contry-from"
-  }, /*#__PURE__*/React.createElement("span", null, "Pa\xEDs de origen:\xA0"), " ", trakingData.p_origen), success && trakingData.timeline == 'ENTREGADO' && /*#__PURE__*/React.createElement("div", {
-    className: "pack-status"
-  }, /*#__PURE__*/React.createElement("span", null, "Estado:\xA0"), " ", trakingData.timeline), success && /*#__PURE__*/React.createElement("div", {
-    className: "timeline-wraper"
-  }, trakingData.datos.map(function (item) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "time-item"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "status"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "date"
-    }, item.fecha), /*#__PURE__*/React.createElement("div", {
-      className: "status-name"
-    }, /*#__PURE__*/React.createElement("strong", null, item.estado))), /*#__PURE__*/React.createElement("div", {
-      className: "location"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "from"
-    }, /*#__PURE__*/React.createElement("span", null, "En:\xA0"), " ", item.oficina_origen), item.oficina_destino != ' ' && /*#__PURE__*/React.createElement("div", {
-      className: "to"
-    }, /*#__PURE__*/React.createElement("span", null, "Hacia:\xA0"), " ", item.oficina_destino)));
-  })), success && console.log(trakingData.datos)));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (TrackCode);
 
 /***/ }),
 
@@ -391,9 +254,9 @@ function App() {
     var headers = new Headers();
     headers.append("Accept", "application/json");
     headers.append("Content-Type", "application/json");
+    headers.append("X-WP-Nonce", site_info.traking_nonce);
     var raw = JSON.stringify({
-      "ci": ci,
-      'nonce': site_info.traking_nonce
+      "ci": ci
     });
     var requestOptions = {
       method: 'POST',

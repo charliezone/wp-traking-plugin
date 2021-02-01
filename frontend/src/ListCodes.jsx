@@ -1,12 +1,9 @@
-import TrackCode from './TrackCode';
-
-const { useState } = React;
+const { useEffect } = React;
 
 function ListCodes(props) {
-
-    const [trackCodeVisible, setTrackCodeVisible] = useState(false);
-    const [reviewCp, setReviewCp] = useState(false);
-    const [reviewYear, setReviewYear] = useState();
+    useEffect(() => {
+        new Accordion('.accordion-container');
+    });
 
     function handleCopy(e) {
         e.preventDefault();
@@ -20,22 +17,24 @@ function ListCodes(props) {
         document.body.removeChild(input_temp);
     }
 
-    function handleReview(e, cp, createAt){
-        e.preventDefault();
-        const date = new Date(createAt);
-        setTrackCodeVisible(true);
-        setReviewCp(cp);
-        setReviewYear(date.getFullYear());
-    }
-
-    function closeReview(){
-        setTrackCodeVisible(false);
-    }
-
     return (
         <div className="traking-codes-list">
             <h2>Códigos de seguimiento</h2>
-            <small>Los códigos aparecen ordenados por fecha, los más recientes arriba.</small>
+            <div className="accordion-container">
+                <div className="ac">
+                    <h2 className="ac-header">
+                    <button className="ac-trigger">Consejos a tener en cuenta</button>
+                    </h2>
+                    <div className="ac-panel">
+                        <ul>
+                            <li className="tip ac-text">Los códigos aparecen ordenados por fecha, los más recientes arriba.</li>
+                            <li className="tip ac-text">El enlace "revisar" lleva a la web de revisión del proveedor de servicios en el país de entrega.</li>
+                            <li className="tip ac-text">Se recomienda que pulse en el botón copiar primeramente, para que pueda pegar el código en la página que se abrirá.</li>
+                            <li className="tip ac-text">Tenga en cuenta que a veces la pagina externa del proveedor falla, recuerde que ese es un servicio ajeno al nuestro por lo que deberá esperar a que este disponible.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>    
             {
                 props.codes && props.codes.map(v => {
                     return (
@@ -43,15 +42,14 @@ function ListCodes(props) {
                             <strong>{v.cp}</strong>
                             <div className="actions-btn">
                                 <button href="#" onClick={handleCopy} code={v.cp}>copiar</button>
-                                <button href="#" onClick={(e) => handleReview(e, v.cp, v.create_at)} >Revisar</button>
+                                <a className="review-btn" href="http://www.correos.cu/rastreador-de-envios/" target="_blank">revisar</a>
                             </div>
                         </div>
                     )
                 })
             }
             {!props.codes && <span>No se encontraron códigos para la información proporcionada.</span>}
-            <button onClick={() => props.goBack('TrakingForm')}>Atras</button>
-            <TrackCode visible={trackCodeVisible} cp={reviewCp} year={reviewYear} close={closeReview} />
+            <button className="back-btn" onClick={() => props.goBack('TrakingForm')}>Atras</button>
         </div>
     )
 }

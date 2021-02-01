@@ -14,10 +14,10 @@ function App() {
         const headers = new Headers();
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
+        headers.append("X-WP-Nonce", site_info.traking_nonce);
 
         const raw = JSON.stringify({
-            "ci": ci,
-            'nonce': site_info.traking_nonce
+            "ci": ci
         });
 
         var requestOptions = {

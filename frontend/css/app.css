@@ -35,7 +35,7 @@
 }
 
 .traking-app .traking-form button{
-    width: 40%;
+    width: 50%;
     margin: 15px auto;
 }
 
@@ -50,10 +50,23 @@
     }
 }
 
-.traking-app .traking-codes-list small{
-    display: inherit;
-    text-align: center;
-    margin-bottom: 10px;
+.traking-app .traking-codes-list .accordion-container{
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 998px){
+    .traking-app .traking-codes-list .accordion-container .ac-header .ac-trigger{
+        width: 100%;
+    }
+}
+
+.traking-app .traking-codes-list .tip{
+    padding-top: 0;
+    color: cornflowerblue;
+}
+
+.traking-app .traking-codes-list .tip:nth-of-type(1){
+    margin-top: 15px;
 }
 
 .traking-app .traking-codes-list span{
@@ -82,7 +95,13 @@
     display: flex;
 }
 
-.traking-app .traking-codes-list .traking-code button{
+.traking-app .traking-codes-list .traking-code .review-btn{
+    display: flex;
+    align-items: center;
+}
+
+.traking-app .traking-codes-list .traking-code button,
+.traking-app .traking-codes-list .traking-code .review-btn{
     margin: 0;
     margin-right: 5px;
     padding: 5px 10px;
@@ -90,7 +109,7 @@
     width: fit-content;
 }
 
-.traking-app .traking-codes-list button{
+.traking-app .traking-codes-list button.back-btn{
     width: 30%;
     display: block;
     margin-top: 15px;
@@ -102,74 +121,4 @@
     .traking-app .traking-codes-list button{
         width: 50%;
     }
-}
-
-.traking-app .track-code{
-    top: 20vh;
-    opacity: 1;
-    width: 500px;
-    display: flex;
-    padding: 25px;
-    position: fixed;
-    border-radius: 5px;
-    overflow-y: scroll;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #000;
-    left: calc(50% - 250px);
-    justify-content: center;
-    transition: all 0.5s ease-in;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .15);
-}
-
-.traking-app .track-code.hide{
-    visibility: hidden;
-    opacity: 0;
-}
-
-.traking-app .track-code .close{
-    top: 0;
-    right: 0;
-    border: 0;
-    color: #000;
-    margin-top: 0;
-    position: absolute;
-    width: fit-content;
-}
-
-.traking-app .track-code .loading{
-    margin-top: 0;
-}
-
-.traking-app .track-code .close:hover,
-.traking-app .track-code .close:focus{
-    outline: none;
-    color: inherit;
-    background-color: transparent;
-}
-
-.traking-app .track-code .track-wraper .contry-from,
-.traking-app .track-code .track-wraper .pack-status,
-.traking-app .track-code .track-wraper .time-item,
-.traking-app .track-code .track-wraper .time-item .location .from,
-.traking-app .track-code .track-wraper .time-item .location .to{
-    display: flex;
-}
-
-.traking-app .track-code .track-wraper{
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.traking-app .track-code .track-wraper .time-item{
-    padding: 15px 10px;
-    justify-content: space-between;
-}
-
-.traking-app .track-code .track-wraper .time-item:nth-of-type(odd) {
-    background-color: #e0e0e0;
-}
-
-.traking-app .track-code .track-wraper .time-item:nth-of-type(even) {
-    background-color: #efefef;
 }
