@@ -269,7 +269,7 @@ ReactDOM.render( /*#__PURE__*/React.createElement(App, null), domContainer);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\grupobordoy\wp-content\plugins\traking\frontend\src\app.js */"./frontend/src/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\test\wp-content\plugins\wp-traking-plugin\frontend\src\app.js */"./frontend/src/app.js");
 
 
 /***/ })
