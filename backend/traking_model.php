@@ -21,11 +21,11 @@ class TrakingCodes{
 
             $csvFile = fopen($this->file['tmp_name'], 'r');
 
-            while(($csvData = fgetcsv($csvFile, 0, ';')) !== FALSE){
+            while(($csvData = fgetcsv($csvFile, 0, ',')) !== FALSE){
                 $csvData = array_map("utf8_encode", $csvData);
 
-                $ci = trim($csvData[0]);
-                $cp = trim($csvData[5]);
+                $ci = trim($csvData[1]);
+                $cp = trim($csvData[0]);
 
                 $data = array( 'cp' => $cp, 'ci' => $ci );
 

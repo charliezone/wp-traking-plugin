@@ -15,7 +15,7 @@
 .traking-app .traking-form{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -35,11 +35,12 @@
 }
 
 .traking-app .traking-form button{
-    margin-top: 15px;
+    width: 50%;
+    margin: 15px auto;
 }
 
 .traking-app .traking-codes-list{
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -49,18 +50,37 @@
     }
 }
 
+.traking-app .traking-codes-list .accordion-container{
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 998px){
+    .traking-app .traking-codes-list .accordion-container .ac-header .ac-trigger{
+        width: 100%;
+    }
+}
+
+.traking-app .traking-codes-list .tip{
+    padding-top: 0;
+    color: cornflowerblue;
+}
+
+.traking-app .traking-codes-list .tip:nth-of-type(1){
+    margin-top: 15px;
+}
+
 .traking-app .traking-codes-list span{
-    text-align: center;
     display: block;
+    text-align: center;
     line-height: 1.5rem;
 }
 
 .traking-app .traking-codes-list .traking-code{
-    color: #707070;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    color: #707070;
     padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .traking-app .traking-codes-list .traking-code:nth-of-type(even){
@@ -71,15 +91,30 @@
     background-color: #e0e0e0;
 }
 
-.traking-app .traking-codes-list .traking-code a{
-    color: #2e3092;
+.traking-app .traking-codes-list .traking-code .actions-btn{
+    display: flex;
 }
 
-.traking-app .traking-codes-list button{
-    margin-left: auto;
-    display: block;
+.traking-app .traking-codes-list .traking-code .review-btn{
+    display: flex;
+    align-items: center;
+}
+
+.traking-app .traking-codes-list .traking-code button,
+.traking-app .traking-codes-list .traking-code .review-btn{
+    margin: 0;
+    margin-right: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    width: fit-content;
+}
+
+.traking-app .traking-codes-list button.back-btn{
     width: 30%;
+    display: block;
     margin-top: 15px;
+    margin-left: auto;
+    padding: 5px 10px;
 }
 
 @media screen and (max-width: 980px){

@@ -95,7 +95,14 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _React = React,
+    useEffect = _React.useEffect;
+
 function ListCodes(props) {
+  useEffect(function () {
+    new Accordion('.accordion-container');
+  });
+
   function handleCopy(e) {
     e.preventDefault();
     var input_temp = document.createElement("input");
@@ -108,16 +115,41 @@ function ListCodes(props) {
 
   return /*#__PURE__*/React.createElement("div", {
     className: "traking-codes-list"
-  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), props.codes && props.codes.map(function (v) {
+  }, /*#__PURE__*/React.createElement("h2", null, "C\xF3digos de seguimiento"), /*#__PURE__*/React.createElement("div", {
+    className: "accordion-container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ac"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "ac-header"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "ac-trigger"
+  }, "Consejos a tener en cuenta")), /*#__PURE__*/React.createElement("div", {
+    className: "ac-panel"
+  }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Los c\xF3digos aparecen ordenados por fecha, los m\xE1s recientes arriba."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "El enlace \"revisar\" lleva a la web de revisi\xF3n del proveedor de servicios en el pa\xEDs de entrega."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Se recomienda que pulse en el bot\xF3n copiar primeramente, para que pueda pegar el c\xF3digo en la p\xE1gina que se abrir\xE1."), /*#__PURE__*/React.createElement("li", {
+    className: "tip ac-text"
+  }, "Tenga en cuenta que a veces la pagina externa del proveedor falla, recuerde que ese es un servicio ajeno al nuestro por lo que deber\xE1 esperar a que este disponible."))))), props.codes && props.codes.map(function (v) {
     return /*#__PURE__*/React.createElement("div", {
       className: "traking-code",
       key: v.cp
-    }, /*#__PURE__*/React.createElement("strong", null, v.cp), " ", /*#__PURE__*/React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("strong", null, v.cp), /*#__PURE__*/React.createElement("div", {
+      className: "actions-btn"
+    }, /*#__PURE__*/React.createElement("button", {
       href: "#",
       onClick: handleCopy,
       code: v.cp
-    }, "copiar"));
+    }, "copiar"), /*#__PURE__*/React.createElement("a", {
+      className: "review-btn",
+      href: "http://www.correos.cu/rastreador-de-envios/",
+      target: "_blank"
+    }, "revisar")));
   }), !props.codes && /*#__PURE__*/React.createElement("span", null, "No se encontraron c\xF3digos para la informaci\xF3n proporcionada."), /*#__PURE__*/React.createElement("button", {
+    className: "back-btn",
     onClick: function onClick() {
       return props.goBack('TrakingForm');
     }
@@ -222,9 +254,9 @@ function App() {
     var headers = new Headers();
     headers.append("Accept", "application/json");
     headers.append("Content-Type", "application/json");
+    headers.append("X-WP-Nonce", site_info.traking_nonce);
     var raw = JSON.stringify({
-      "ci": ci,
-      'nonce': site_info.traking_nonce
+      "ci": ci
     });
     var requestOptions = {
       method: 'POST',
