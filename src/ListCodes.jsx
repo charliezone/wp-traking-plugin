@@ -18,7 +18,6 @@ function ListCodes(props) {
                     <th>Estado</th>
                     <th>Código</th>
                     <th>Factura</th>
-                    <th>Documento</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -34,7 +33,6 @@ function ListCodes(props) {
                                     <a href="#" className="copyMovil" onClick={handleCopy} code={props.codes[v].hbl}>copiar</a>
                                 </td>
                                 <td>{/^\d+$/g.test(props.codes[v].noorder.trim()) ? props.codes[v].noorder : '-'}</td>
-                                <td>{props.codes[v].mailguide.trim().match(/^[\d]{3}-/) || props.codes[v].mailguide.trim().startsWith('BL-') ? props.codes[v].mailguide : '-'}</td>
                                 <td><a href="#" onClick={handleCopy} code={props.codes[v].hbl}>copiar</a></td>
                             </tr>
                         )
